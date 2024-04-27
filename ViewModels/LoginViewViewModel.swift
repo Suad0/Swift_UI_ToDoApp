@@ -6,32 +6,41 @@ class LoginViewViewModel: ObservableObject {
     @Published var errorMessage = ""
     @Published var showAlert = false
     
-    init(){}
+    let dbConnection = DatabaseConnection()// Instanziere die DatabaseConnection-Klasse
     
-    func login(){
-        guard validate() else {
-            return
+
+    
+    
+    func login() {
+        
+        // Aufrufen der Login-Funktion des DatabaseConnection-Objekts
+        if dbConnection.login(email: email, password: password) {
+            // Erfolgreich eingeloggt
+        } else {
+            // Fehler beim Einloggen
         }
     }
     
-    private func validate()-> Bool{
+    
+    /*
+    private func validate() -> Bool {
         errorMessage = ""
         
         guard !email.trimmingCharacters(in: .whitespaces).isEmpty,
               !password.trimmingCharacters(in: .whitespaces).isEmpty else {
-            
-            errorMessage == "Bitte alles ausüllen"
+            errorMessage = "Bitte alles ausfüllen"
             return false
-            
         }
         
-        guard email.contains("@") && email.contains(".")else {
-            errorMessage = "email nicht valide"
+        guard email.contains("@") && email.contains(".") else {
+            errorMessage = "E-Mail ist nicht valide"
             return false
         }
         
         return true
     }
+     
+     */
     
     
     

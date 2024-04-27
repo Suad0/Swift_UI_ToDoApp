@@ -13,35 +13,27 @@ class RegistrationViewViewModel: ObservableObject{
     @Published var email = ""
     @Published var password = ""
     
-    init(){}
+    let dbConnection = DatabaseConnection() // Instanziere die DatabaseConnection-Klasse
     
-    func register(){
-        guard validate() else {
-            return
-        }
+    func register() {
+       
+        
+        // Aufrufen der Registrierungsfunktion des DatabaseConnection-Objekts
+        dbConnection.register(email: email, password: password, name: name)
     }
     
-    private func validate()-> Bool{
+    private func validate() -> Bool {
         guard !email.trimmingCharacters(in: .whitespaces).isEmpty,
               !password.trimmingCharacters(in: .whitespaces).isEmpty,
-              !name.trimmingCharacters(in: .whitespaces).isEmpty
-                
-        else {
-            
+              !name.trimmingCharacters(in: .whitespaces).isEmpty else {
             return false
-            
         }
         
         return true
-        
-        
-        
-        
-        
     }
     
 }
 
-    
-    
+
+
 

@@ -9,57 +9,46 @@ import SwiftUI
 
 struct LoginView: View {
     
-    @StateObject var viewModal = LoginViewViewModel()
+    
+    @StateObject var viewModel = LoginViewViewModel()
     
     var body: some View {
-        NavigationView{
-            
+        NavigationView {
             VStack {
                 // Header
                 HeaderView(title: "TodoList", subtitle: "A deppate Liste", angle: 30, backgroundColor: Color.brown)
-
                 
-                
-               
                 // Login Form
                 Form {
-                    
-                   
-                    
-                    TextField("Email Address", text: $viewModal.email)
+                    TextField("Email Address", text: $viewModel.email)
                         .textFieldStyle(DefaultTextFieldStyle())
-                    SecureField("Password", text: $viewModal.password)
+                        .autocorrectionDisabled()
+
+                    TextField("Password", text: $viewModel.password)
                         .textFieldStyle(DefaultTextFieldStyle())
+                        .disableAutocorrection(true)
+
                     
-                    TLButton(title: "Login", background: .blue){
-                        
-                        viewModal.login()
-                        
+                    Button("Login") {
+                        viewModel.login()
                     }
                     .padding()
-
                 }
-                .offset(/*@START_MENU_TOKEN@*/CGSize(width: 10.0, height: 10.0)/*@END_MENU_TOKEN@*/)
-                
-                
+                .offset(CGSize(width: 10.0, height: 10.0))
                 
                 // Create Account
                 VStack {
                     Text("Neu hier")
                     NavigationLink("Create Account", destination: RegistrationView())
-                    
                 }
                 .padding(.bottom, 50)
                 
-                
-                
                 Spacer()
             }
-            
         }
-        
-     
     }
+    
+    
 }
 
 #Preview {
