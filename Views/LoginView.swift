@@ -10,7 +10,11 @@ import SwiftUI
 struct LoginView: View {
     
     
-    @StateObject var viewModel = LoginViewViewModel()
+    @StateObject var viewModel: LoginViewViewModel
+        
+        init(viewModel: LoginViewViewModel = LoginViewViewModel(mainViewModel: MainViewViewModel())) {
+            self._viewModel = StateObject(wrappedValue: viewModel)
+        }
     
     var body: some View {
         NavigationView {

@@ -2,22 +2,24 @@ import Foundation
 
 class LoginViewViewModel: ObservableObject {
     @Published var email = ""
-    @Published var password = ""
-    @Published var errorMessage = ""
-    @Published var showAlert = false
-    
-    let dbConnection = DatabaseConnection()// Instanziere die DatabaseConnection-Klasse
-    
-
-    
-    
-    func login() {
+        @Published var password = ""
+        @Published var errorMessage = ""
+        @Published var showAlert = false
         
-        // Aufrufen der Login-Funktion des DatabaseConnection-Objekts
-        if dbConnection.login(email: email, password: password) {
-            // Erfolgreich eingeloggt
-        } else {
-            // Fehler beim Einloggen
+        let dbConnection = DatabaseConnection()
+        let mainViewModel: MainViewViewModel // Pass MainViewViewModel
+        
+        init(mainViewModel: MainViewViewModel) {
+            self.mainViewModel = mainViewModel
+        }
+        
+        func login() {
+            if dbConnection.login(email: email, password: password) {
+                // Successfully logged in
+                mainViewModel.userLoggedIn() // Notify MainViewViewModel
+            } else {
+                // Handle login failure
+            }
         }
     }
     
@@ -44,4 +46,4 @@ class LoginViewViewModel: ObservableObject {
     
     
     
-}
+
