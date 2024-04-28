@@ -8,16 +8,38 @@
 import SwiftUI
 
 struct MainView: View {
-    @ObservedObject var viewModel = MainViewViewModel()
-        
-        var body: some View {
-            if viewModel.isLoggedIn {
+    @StateObject var viewModel = MainViewViewModel()
+    
+    var body: some View {
+        if viewModel.isLoggedIn {
+            
+            TabView {
+                
                 ToDoListView()
-                    .padding()
-            } else {
-                LoginView(viewModel: LoginViewViewModel(mainViewModel: viewModel))
+                    .tabItem {
+                        Label("Home", systemImage: "house")
+                        
+                        
+                    }
+                ProfileView()
+                    .tabItem {
+                        Label("Profile", systemImage: "person.circle")
+                        
+                        
+                    }
+                
+                
+                
             }
+            
+            
+        
+            
+            
+        } else {
+            LoginView(viewModel: LoginViewViewModel(mainViewModel: viewModel))
         }
+    }
 }
 
 

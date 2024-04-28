@@ -9,7 +9,28 @@ import SwiftUI
 
 struct ToDoListView: View {
     var body: some View {
-        Text("welcome to you account")
+        
+        
+        NavigationView{
+            VStack{
+                
+            }
+            .navigationTitle("To do list ")
+            .toolbar{
+                Button {
+                    // Action
+                } label: {
+                    Image(systemName: "plus")
+                }
+            }
+        }
+        
+        
+        
+        
+        
+        
+        
     }
 }
 
