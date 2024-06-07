@@ -8,11 +8,42 @@
 import SwiftUI
 
 struct NewItemView: View {
+    
+    @Environment(\.dismiss) var dismiss
+    @StateObject var viewModal = NewItemViewViewModel()
+    var onAdd: (ToDoItem) -> Void
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationView {
+            VStack {
+                Text("New Item")
+                    .font(.system(size: 32))
+                    .bold()
+                
+                Form {
+                    Section(header: Text("Details")) {
+                        TextField("Name", text: $viewModal.name)
+                        TextField("Age", value: $viewModal.age, formatter: NumberFormatter())
+                            .keyboardType(.numberPad)
+                        TextField("Members", value: $viewModal.members, formatter: NumberFormatter())
+                            .keyboardType(.numberPad)
+                    }
+                    
+                    Button("Add") {
+                        let newItem = ToDoItem(name: viewModal.name, age: viewModal.age, members: viewModal.members)
+                        onAdd(newItem)
+                        dismiss()
+                    }
+                }
+            }
+            .navigationBarTitle("Add New Item", displayMode: .inline)
+            .navigationBarItems(leading: Button("Cancel") {
+                dismiss()
+            })
+        }
     }
 }
 
 #Preview {
-    NewItemView()
+    NewItemView(onAdd: { _ in })
 }
