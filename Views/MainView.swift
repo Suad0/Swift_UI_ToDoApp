@@ -21,16 +21,17 @@ struct MainView: View {
                         
                         
                     }
+                
+                CalenderView()
+                    .tabItem {
+                        Label("Calendar", systemImage: "calendar")
+                    }
+                
                 ProfileView()
                     .tabItem {
                         Label("Profile", systemImage: "person.circle")
                         
                         
-                    }
-                
-                CalenderView()
-                    .tabItem {
-                        Label("Calendar", systemImage: "calendar")
                     }
                 
                 

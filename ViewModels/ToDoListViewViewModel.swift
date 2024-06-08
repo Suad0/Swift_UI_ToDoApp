@@ -9,12 +9,7 @@ import Foundation
 
 /// ViewModal for list of iTems view
 
-struct ToDoItem: Identifiable {
-    let id = UUID()
-    var name: String
-    var age: Int
-    var members: Int
-}
+
 
 class ToDoListViewViewModel: ObservableObject {
     @Published var items: [ToDoItem] = []

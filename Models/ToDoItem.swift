@@ -6,3 +6,10 @@
 //
 
 import Foundation
+
+struct ToDoItem: Identifiable {
+    let id = UUID()
+    var name: String
+    var age: Int
+    var members: Int
+}

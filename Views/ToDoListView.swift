@@ -19,11 +19,13 @@ struct ToDoListView: View {
         NavigationView {
             VStack {
                 List(viewModal.items) { item in
-                    VStack(alignment: .leading) {
-                        Text(item.name)
-                            .font(.headline)
-                        Text("Age: \(item.age)")
-                        Text("Members: \(item.members)")
+                    NavigationLink(destination: TeamView(item: item)) {
+                        VStack(alignment: .leading) {
+                            Text(item.name)
+                                .font(.headline)
+                            Text("Age: \(item.age)")
+                            Text("Members: \(item.members)")
+                        }
                     }
                 }
             }
