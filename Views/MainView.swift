@@ -15,7 +15,7 @@ struct MainView: View {
             
             TabView {
                 
-                ToDoListView()
+                TeamListView()
                     .tabItem {
                         Label("Home", systemImage: "house")
                         
@@ -26,7 +26,7 @@ struct MainView: View {
                 
                 
                 
-                CalenderView()
+                DatePickerView()
                     .tabItem {
                         Label("Calendar", systemImage: "calendar")
                     }

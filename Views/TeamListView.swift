@@ -7,14 +7,14 @@
 
 import SwiftUI
 
-struct ToDoListView: View {
+struct TeamListView: View {
     
-    @StateObject var viewModel = ToDoListViewViewModel()
+    @StateObject var viewModel = TeamListViewViewModel()
     @State private var showNewItemView = false
     @State private var searchText = ""
-
+    
     init() {}
-
+    
     var body: some View {
         NavigationView {
             VStack {
@@ -32,7 +32,7 @@ struct ToDoListView: View {
                     }
                 }
             }
-            .navigationTitle("To do list")
+            .navigationTitle("Your Teams")
             .toolbar {
                 Button {
                     showNewItemView.toggle()
@@ -40,14 +40,18 @@ struct ToDoListView: View {
                     Image(systemName: "plus")
                 }
             }
-            .sheet(isPresented: $showNewItemView) {
+            .sheet(isPresented: $showNewItemView, content: {
                 NewItemView { newItem in
                     viewModel.addItem(newItem)
                 }
-            }
+                
+            })
+            .presentationDetents([.medium])
+            
+            
         }
     }
-
+    
     var filteredItems: [ToDoItem] {
         if searchText.isEmpty {
             return viewModel.items
@@ -59,34 +63,34 @@ struct ToDoListView: View {
 
 struct SearchBar: UIViewRepresentable {
     @Binding var text: String
-
+    
     class Coordinator: NSObject, UISearchBarDelegate {
         @Binding var text: String
-
+        
         init(text: Binding<String>) {
             _text = text
         }
-
+        
         func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
             text = searchText
         }
     }
-
+    
     func makeCoordinator() -> Coordinator {
         return Coordinator(text: $text)
     }
-
+    
     func makeUIView(context: Context) -> UISearchBar {
         let searchBar = UISearchBar(frame: .zero)
         searchBar.delegate = context.coordinator
         return searchBar
     }
-
+    
     func updateUIView(_ uiView: UISearchBar, context: Context) {
         uiView.text = text
     }
 }
 
 #Preview {
-    ToDoListView()
+    TeamListView()
 }

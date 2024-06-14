@@ -7,7 +7,7 @@
 
 import Foundation
 
-class NewItemViewViewModel: ObservableObject{
+class NewTeamViewViewModel: ObservableObject{
     @Published var name: String = ""
     @Published var age: Int = 0
     @Published var members: Int = 0

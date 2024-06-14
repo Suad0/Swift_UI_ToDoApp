@@ -10,13 +10,13 @@ import SwiftUI
 struct NewItemView: View {
     
     @Environment(\.dismiss) var dismiss
-    @StateObject var viewModal = NewItemViewViewModel()
+    @StateObject var viewModal = NewTeamViewViewModel()
     var onAdd: (ToDoItem) -> Void
     
     var body: some View {
         NavigationView {
             VStack {
-                Text("New Item")
+                Text("New Team")
                     .font(.system(size: 32))
                     .bold()
                 
@@ -36,7 +36,7 @@ struct NewItemView: View {
                     }
                 }
             }
-            .navigationBarTitle("Add New Item", displayMode: .inline)
+            .navigationBarTitle("Create Team", displayMode: .inline)
             .navigationBarItems(leading: Button("Cancel") {
                 dismiss()
             })

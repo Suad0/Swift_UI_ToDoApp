@@ -13,7 +13,7 @@ struct RegistrationView: View {
     
     var body: some View {
         VStack {
-            HeaderView(title: "register", subtitle: "String", angle: -15, backgroundColor: .orange)
+            HeaderView(title: "Register", subtitle: "Suad App", angle: -15, backgroundColor: .orange)
             
             Form {
                 TextField("Email Address", text: $viewModel.email)

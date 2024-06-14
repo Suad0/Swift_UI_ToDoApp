@@ -11,7 +11,7 @@ import Foundation
 
 
 
-class ToDoListViewViewModel: ObservableObject {
+class TeamListViewViewModel: ObservableObject {
     @Published var items: [ToDoItem] = []
     
     init() {}
